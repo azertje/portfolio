@@ -1,9 +1,10 @@
 :root {
     --bg-blue: #f4f9fc;
-    --text: #0f1b61;
+    --title: #0f1b61;
+    --text: #232636;
     --light-blue: #aadcec;
     --light-text: #585f64;
-    --accent: #7f00e0;
+    --accent: #73bbc5;
   }
   
   /* Box sizing rules */
@@ -55,9 +56,12 @@
   h1, h2, h3 {
       font-family: 'Bitter', system-ui, sans-serif;
   }
-
+  h1 {
+    color: var(--title);
+  }
   h2 {
     font-size: 3rem;
+    color: var(--title);
   }
   
   /* A elements that don't have a class get default styles */
@@ -126,7 +130,7 @@ header {
     padding-inline: 3rem;
 }
 .primary-navigation a {
-    color: #000;
+    color: var(--title);
     text-decoration: none;
 }
 .primary-navigation a > [aria-hidden="true"] {
@@ -135,14 +139,14 @@ header {
 }
 .logo-container {
     margin-left: 2rem;
-    color: var(--accent);
+    color: var(--title);
 }
 .logo-container p {
     font-size: 2rem;
     font-weight: 700;
     margin: 0;
 }
-.logo-container p span {
+.logo-container span {
     font-weight: 900;
 }
 
@@ -154,9 +158,20 @@ header {
 .hero--container {
     padding: 3rem 2rem;
     line-height: 1;
+    position: relative;
+}
+.hero--container::after {
+    content: "";
+    transform-origin: bottom center;
+    position: absolute;
+    width: 1px;
+    height: 35vh;
+    left: 50%;
+    top: 100%;
+    background: var(--light-text);
+    opacity: .45;
 }
 .hero--text h1 {
-    color: var(--text);
     font-size: 2.5rem;
     text-align: center;
     font-weight: 400;
@@ -167,16 +182,35 @@ header {
 .dot {
     color: var(--accent);
 }
+.scroll {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1rem;
+    font-size: 0.8rem;
+    color: var(--light-text);
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translate(-50%, 0);
+    }
+    100% {
+        transform: translate(-50%, -5px);
+    }
+}
 
 /* About section */
 .about--container {
     padding: 1rem 2rem;
 }
-.about--container h2, .projects--container h2 {
+.about--container h2, .projects--container h2, .contact--container h2 {
     position: relative;
     margin-bottom: 3rem;
 }
-.about--container h2::before, .projects--container h2::before {
+.about--container h2::before, .projects--container h2::before,
+.contact--container h2::before {
     content: "";
     position: absolute;
     left: 0;
@@ -275,10 +309,8 @@ header {
 }
 .projects--project-text h3 {
     margin: 0;
-    padding: 0 0 10px 0;
     color: var(--text);
-    font-size: 22px;
-    font-weight: bold;
+    font-weight: 700;
     text-transform: uppercase;
 }
 .projects--project-text ul {
@@ -291,18 +323,20 @@ header {
 .projects--project-text ul li {
     padding: 0.25rem 0.5rem;
     border: 1px solid var(--accent);
-    color: var(--accent);
+    /* color: var(--accent); */
+    color: white;
+    background-color: var(--accent);
     border-radius: 0.5rem;
 }
 .projects--project-text p {
     position: absolute;
     left: 20px;
     right: 20px;
-    bottom: 56px;
+    bottom: 65px;
     margin: 0;
     padding: 0;
-    color: #585f64;
-    line-height: 27px;
+    color: var(--light-text);
+    line-height:27px;
     opacity: 0;
     -webkit-transform: translateY(45px);
     transform: translateY(45px);
@@ -347,6 +381,17 @@ header {
     width: 1.5rem;
 }
 
+/* Contact */
+.contact--container {
+    padding: 1rem 2rem;
+}
+.contact--text-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
 
 
 
@@ -361,10 +406,12 @@ header {
         flex-direction: column;
         padding: min(30vh, 10rem) 2em;
 
-        background: hsl(0 0% 100% / 0.1);
+        background: hsl(0 0% 100% / 0.8);
         backdrop-filter: blur(1rem);
 
-        transform: translateX(100%);
+        box-shadow: -10px 0px 10px 1px #e4e4e4;
+
+        transform: translateX(110%);
         transition: transform 350ms ease-out;
     }
 
