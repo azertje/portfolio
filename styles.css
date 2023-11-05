@@ -522,6 +522,9 @@ header .nav-container nav a:hover::after, .nav-container nav a:focus::after {
 .contact--text-links a svg  {
     fill: var(--text);
 }
+.contact--text-links a:hover svg {
+    fill: var(--accent);
+}
 
 .about--container, .projects--container, .contact--container {
     max-width: 1200px;
