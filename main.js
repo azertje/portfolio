@@ -30,6 +30,34 @@ links.forEach((element) => {
     })
 })
 
+function loadPageMobile() {
+	let htmlFileName
+	let value = document.getElementById('language-select-mobile').value
+	switch (value) {
+		case 'ES':
+			htmlFileName = 'es.html'
+			mobile_menu.classList.remove('is-active');
+			menu_btn.classList.toggle('is-active');
+			break;
+		case 'EN':
+			htmlFileName = 'index.html'
+			mobile_menu.classList.remove('is-active');
+			menu_btn.classList.toggle('is-active');
+			break;
+		case 'CA':
+			htmlFileName = 'ca.html'
+			mobile_menu.classList.remove('is-active');
+			menu_btn.classList.toggle('is-active');
+			break;
+	
+		default:
+			break;
+	}
+	fetch(htmlFileName)
+        .then(data => data.text())
+        .then(html => document.querySelector('body').innerHTML = html);
+}
+
 function loadPage() {
 	let htmlFileName
 	let value = document.getElementById('language-select').value
