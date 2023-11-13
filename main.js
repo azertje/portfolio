@@ -29,3 +29,25 @@ links.forEach((element) => {
 		menu_btn.classList.toggle('is-active');
     })
 })
+
+function loadPage() {
+	let htmlFileName
+	let value = document.getElementById('language-select').value
+	switch (value) {
+		case 'ES':
+			htmlFileName = 'es.html'
+			break;
+		case 'EN':
+			htmlFileName = 'index.html'
+			break;
+		case 'CA':
+			htmlFileName = 'ca.html'
+			break;
+	
+		default:
+			break;
+	}
+	fetch(htmlFileName)
+        .then(data => data.text())
+        .then(html => document.querySelector('body').innerHTML = html);
+}
